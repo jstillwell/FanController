@@ -6,21 +6,24 @@
  * 
  */
 
- int enableMotorA;  //ENA
- int directionPin1; //IN1
- int directionPin2; //IN2
- int enableMotorB;  //ENB
- int directionPin3; //IN3
- int directionPin4; //IN4
+ enum Direction {
+  Forward,
+  Backward
+ }
 
 class L298N
 {
   public:
-    L298N(int pin);
-    void begin(int speed);
+    L298N(int ena, int in1, int in2, int enb, int in3, int in4);
+    void begin(int speed, Direction direction);
     void end();
     void set(int speed);
-    int currentSpeed;
   private:
-    int _pin;
+    int currentSpeed;
+    int _enA;
+    int _in1;
+    int _in2;
+    int _enB;
+    int _in3;
+    int _in4;
 };
